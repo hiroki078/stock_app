@@ -438,7 +438,7 @@ app.get('/stores', (req, res) => {
 
 
 async function getCoordinates(address) {
-    const apiKey = 'AIzaSyCleqFRP-QJyQeGDzs-sWJF5vzwnOFX_Kc';
+    const apiKey = 'api';
     const response = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json`, {
         params: {
             address: address,
