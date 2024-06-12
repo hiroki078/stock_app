@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/send_url.js"></script>
+  </head>
+  <body>
+    <%- include('header')%>
+    <div class="sign">
+      <div class="container">
+        <h1><a href="/index">在庫確認リストアプリ</a></h1>
+        <div class="panel">
+          <h2>新規登録</h2>
+          <% if(errors.length > 0) {%>
+            <ul>
+                <% errors.forEach((error) => { %>
+                    <li><%= error %></li>
+                <% })%>
+            </ul>
+          <% }%>
+          <form action="/signup" method="POST">
+            <div>
+                <label for="userName">ユーザー名:</label>
+                <input type="text" id="userName" name="userName" required>
+            </div>
+            <div>
+                <label for="email">メールアドレス:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div>
+                <label for="password">パスワード:</label>
+                <input type="password" id="password" name="password" required>
+                <input type="checkbox" id="togglePassword"> パスワードを表示
+            </div>
+            <div>
+                <label for="confirmPassword">パスワード（確認）:</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" required>
+            </div>
+            <div>
+                <button type="submit">登録</button>
+            </div>
+        </form>
+            <a href="/index">商品一覧にもどる</a>
+          
+        </div>
+      </div>
+    </div>
+    <script>
+        document.getElementById('togglePassword').addEventListener('change', function() {
+            const password = document.getElementById('password');
+            if (this.checked) {
+                password.type = 'text';
+            } else {
+                password.type = 'password';
+            }
+        });
+    </script>
+  </body>
+</html>

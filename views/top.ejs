@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>LIST APP</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/send_url.js"></script>
+  </head>
+  <body>
+    <div class="top-wrapper">
+      <div class="top-detail">
+        <h2 class="subtitle">在庫確認リストアプリ</h2>
+        <h1 class="title">LIST APP</h1>
+        <p class="description">
+          商品一覧から在庫保有店舗の検索、
+          <br>
+          店舗一覧から店舗の商品在庫が確認できます
+        </p>
+        <a href="/index" class="index-button">商品一覧</a>
+        <a href="/coupon" class="index-button">クーポンを見る</a>
+        <a href="/stores" class="index-button">店舗一覧</a>
+
+        <% if (locals.isLoggedIn) {%>
+          <a href="/logout" class="header-logo">ログアウト</a>
+        <% } else {%>
+          <a href="/login" class="header-logo">ログイン</a>
+          <a href="/signup" class="header-logo">新規登録</a>
+        <% }%>
+      </div>
+      <div class="top-image">
+        
+      </div>
+    </div>
+  </body>
+</html>

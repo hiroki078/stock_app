@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>LIST APP</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/send_url.js"></script>
+  </head>
+  <body>
+    <%- include('header')%>
+    <div class="table">
+      <div class="container-header">
+        <h1>在庫リスト</h1>
+        <form action="/genre" method="get">
+          <label class="form-label" for="selectBox">商品のジャンルを選んでください：</label>
+          <select name="selectedValue" id="selectBox">
+            <option value="ソフトドリンク">ソフトドリンク</option>
+            <option value="酒類">酒類</option>
+            <option value="野菜">野菜</option>
+            <option value="乳製品">乳製品</option>
+            <option value="畜産加工品">畜産加工品</option>
+            <option value="乾物、麺類">乾物、麺類</option>
+            <option value="調味料、甘味料">調味料、甘味料</option>
+            <option value="即席食品">即席食品</option>
+            <option value="缶詰、瓶詰">缶詰、瓶詰</option>
+            <option value="パン、もち">パン、もち</option>
+            <option value="お菓子">お菓子</option>
+            <option value="ベビーフード">ベビーフード</option>
+            <option value="冷凍食品">冷凍食品</option>
+            <option value="アイスクリーム、氷">アイスクリーム、氷</option>
+            <option value="その他">その他</option>
+          </select>
+          <button type="submit" class="btn btn-border">ジャンルで絞る</button>
+        </form>
+        <form action="/search" method="post">
+          <p class="form-label">商品名</p>
+          <input type="search" name="searchItemName">
+          <input type="submit" class="btn btn-border" value="商品名で検索する">
+        </form>
+      </div>
+      <div class="product-grid">
+        <% items.forEach((item) => {%>
+        <a href="/itemInfo/ <%= item.id %>" class="product-card-link">
+            <div class="product-card">
+                <img src="<%= item.picture%>" alt="<%= item.name%>">
+                <div class="product-info">
+                    <h3><%= item.name%></h3>
+                    <p><%= item.genre%></p>
+                    <form action="/item/ <%= item.id %>/stockSearch" method="get" onclick="event.stopPropagation();">
+                      <input type="submit" class="btn btn-border" value="在庫のある店舗を探す">
+                    </form>
+                    <% if (locals.isLoggedIn) {%>
+                      <a href="/edit/ <%= item.id %> ">編集</a>
+                    <% }%>
+                </div>
+            </div>
+        </a>
+        <% })%>
+        <!-- 他の商品カードも同様に追加 -->
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

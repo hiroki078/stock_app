@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>LIST APP</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/send_url.js"></script>
+  </head>
+  <body>
+    <%- include('header')%>
+    <div class="container">
+      <div class="item-form-wrapper">
+        <h2><%= store.name %></h2>
+                <p>場所: <%= store.location %></p>
+                <p>電話番号: <%= store.phone %></p>
+      </div>
+      <a href="/">トップに戻る</a>
+      <a href="/stores">店舗一覧に戻る</a>
+      <a href="/index" class="cancel-button">商品一覧に戻る</a>
+    </div>
+  </body>
+</html>

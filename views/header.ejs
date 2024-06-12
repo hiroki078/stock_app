@@ -1,0 +1,14 @@
+<header>
+    <p class="header-user">ようこそ、<%= locals.userName%>さん</p>
+    <a href="/" class="header-logo">トップ</a>
+    <a href="/index" class="header-logo">商品一覧</a>
+    <a href="/stores" class="header-logo">店舗一覧</a>
+    <a href="/coupon" class="header-logo">クーポン</a>
+    <% if (locals.isLoggedIn) {%>
+        <a href="/user" class="header-logo">ユーザー情報</a>
+        <a href="/logout" class="header-logo">ログアウト</a>
+    <% } else {%>
+        <a href="/login" class="header-logo">ログイン</a>
+        <a href="/signup" class="header-logo">新規登録</a>
+    <% }%>
+</header>

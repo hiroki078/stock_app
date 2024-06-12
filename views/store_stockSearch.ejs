@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <title>LIST APP</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/send_url.js"></script>
+</head>
+<body>
+    <%- include('header')%>
+    <h1>店舗一覧</h1>
+    <ul>
+        <% stores.forEach(store => { %>
+            <li><a href="/stores/ <%= store.id %>/storeInfo"><%= store.name %></a></li>
+            <p>販売価格：<%= store.price%></p>
+            <p>在庫数：<%= store.quantity %></p>
+            <p>最終更新：<%= store.last_updated %></p>
+        <% }) %>
+    </ul>
+    <a href="/index">商品一覧に戻る</a>
+    <a href="/">トップに戻る</a>
+</body>
+</html>

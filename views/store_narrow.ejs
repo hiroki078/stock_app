@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <title>LIST APP</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/send_url.js"></script>
+</head>
+<body>
+    <%- include('header')%>
+    <a href="/stores/new">店舗追加</a>
+    <h1>店舗一覧</h1>
+    <ul>
+        <% stores.forEach(store => { %>
+            <li><a href="/stores/<%= store.id %>/items"><%= store.name %></a></li>
+        <% }) %>
+    </ul>
+    <a href="/stores">戻る</a>
+    <a href="/">トップに戻る</a>
+</body>
+</html>

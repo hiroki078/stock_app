@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>LIST APP</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/send_url.js"></script>
+  </head>
+  <body>
+    <%- include('header')%>
+    <div class="container">
+      <div class="container-header">
+        <h1>在庫個数の更新</h1>
+      </div>
+      <div class="item-form-wrapper">
+        <form action="/stores/<%= item.si_id%>/items/edit" method="post">
+            <p class="form-label">商品名：<%= item.name %></p>
+            <p class="form-label">販売価格</p>
+            <input name=itemPrice type="text" value="<%= item.price %>">
+
+            <p class="form-label">数量</p>
+            <input name="itemQuantity" type="number" value="<%= item.quantity %>">
+
+            <input type="submit" value="更新する">
+        </form>
+      </div>
+      <a href="/stores" class="cancel-button">店舗一覧にもどる</a>
+    </div>
+  </body>
+</html>

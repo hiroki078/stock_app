@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>LIST APP</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/send_url.js"></script>
+  </head>
+  <body>
+    <%- include('header') %>
+    <div class="container">
+      <div class="container-header">
+        <h1>商品リスト編集</h1>
+      </div>
+      <div class="item-form-wrapper">
+        <form action="/update/<%= item.id %> " method="post" enctype="multipart/form-data">
+            <p class="form-label">商品情報更新</p>
+            <p class="form-label">商品名</p>
+            <input name="itemName" type="text" value="<%= item.name %>">
+
+            <p><label class="form-label" for="selectBox">商品のジャンル：</label></p>
+            <select name="selectedValue" id="selectBox">
+            <% const genres = ['ソフトドリンク', '酒類', '野菜', '乳製品', '畜産加工品', '乾物、麺類', '調味料、甘味料', '即席食品', '缶詰、瓶詰', 'パン、もち', 'お菓子', 'ベビーフード', '冷凍食品', 'アイスクリーム、氷', 'その他']; %>
+            <% genres.forEach(genre => { %>
+            <option value="<%= genre %>" <%= genre === item.genre ? 'selected' : '' %>><%= genre %></option>
+            <% }) %>
+            </select>
+
+            <p>栄養成分</p>
+            <p>熱量(kcal)</p>
+            <input type="text" name="itemEnergy" value="<%= item.energy%>">
+            <p>たんぱく質(g)</p>
+            <input type="text" name="itemProtein" value="<%= item.protein%>">
+            <p>脂質(g)</p>
+            <input type="text" name="itemLipids" value="<%= item.lipids%>">
+            <p>炭水化物(g)</p>
+            <input type="text" name="itemCarbohydrate" value="<%= item.carbohydrate%>">
+            <p>食塩相当量(g)</p>
+            <input type="text" name="itemSalt" value="<%= item.salt%>">
+
+            <p>本製品に含まれるアレルギー物質</p>
+            <% ['えび', 'かに', 'くるみ', '小麦', 'そば', '卵', '乳', '落花生'].forEach(allergen => { %>
+                <input type="checkbox" id="<%= allergen %>" value="<%= allergen %>" name="allergen" <%= JSON.parse(item.allergen).includes(allergen) ? 'checked' : '' %>>
+                <label for="<%= allergen %>"><%= allergen %></label>
+            <% }) %>
+             
+            
+            <label for="itemPicture">商品写真:</label>
+            <input type="file" id="itemPicture" name="itemPicture" accept="image/png, image/jpeg">
+
+            <input type="submit" value="更新する">
+        </form>
+      </div>
+      <a href="/index" class="cancel-button"></span>商品一覧にもどる</a>
+    </div>
+  </body>
+</html>

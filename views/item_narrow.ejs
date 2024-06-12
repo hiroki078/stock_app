@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>LIST APP</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/send_url.js"></script>
+  </head>
+  <body>
+    <%- include('header')%>
+    <div class="container">
+      <div class="container-header">
+        <h1>在庫リスト</h1>
+      </div>
+      <div class="product-grid">
+        <% items.forEach((item) => {%>
+        <a href="/itemInfo/ <%= item.id %>" class="product-card-link">
+            <div class="product-card">
+                <img src="<%= item.picture%>" alt="<%= item.name%>">
+                <div class="product-info">
+                    <h3><%= item.name%></h3>
+                    <p><%= item.genre%></p>
+                    <form action="/item/ <%= item.id %>/stockSearch" method="get" class="inventory-button" onclick="event.stopPropagation();">
+                      <input type="submit" value="在庫のある店舗を探す">
+                    </form>
+                    <% if (locals.isLoggedIn) {%>
+                      <a href="/edit/ <%= item.id %> ">編集</a>
+                    <% }%>
+                </div>
+            </div>
+        </a>
+        <% })%>
+        <!-- 他の商品カードも同様に追加 -->
+      </div>
+        <a href="/index" class="cancel-button">商品一覧にもどる</a>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

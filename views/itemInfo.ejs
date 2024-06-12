@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>LIST APP</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/send_url.js"></script>
+  </head>
+  <body>
+    <%- include('header')%>
+    <div class="container">
+      <div class="item-form-wrapper">
+        <h2><%= item.name %></h2>
+                <p>ジャンル: <%= item.genre %></p>
+                <p>熱量(kcal): <%= item.energy %></p>
+                <p>たんぱく質(g): <%= item.protein %></p>
+                <p>脂質(g): <%= item.lipids %></p>
+                <p>炭水化物(g): <%= item.carbohydrate %></p>
+                <p>食塩相当量(g): <%= item.salt %></p>
+                <% if (item.allergen) { %>
+                    <% const allergens = JSON.parse(item.allergen); %>
+                    <% if (allergens.length > 0) { %>
+                      <p>アレルゲン: <%= allergens.join(', ') %></p>
+                    <% } else { %>
+                      <p>アレルゲン: なし</p>
+                    <% } %>
+                  <% } else { %>
+                    <p>アレルゲン: なし</p>
+                  <% } %>
+                  
+                <% if (item.picture) { %>
+                    <img src="/<%= item.picture %>" alt="<%= item.name %>">
+                <% } %>
+      </div>
+      <a href="/index" class="cancel-button">商品一覧にもどる</a>
+    </div>
+  </body>
+</html>

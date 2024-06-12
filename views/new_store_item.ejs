@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>新しい在庫を追加</title>
+</head>
+<body>
+  <%- include('header')%>
+    <h1>新しい在庫を追加</h1>
+    <form action="/stores/<%= storeId %>/items/create" method="POST" enctype="multipart/form-data">
+        <label for="itemPicture">商品写真:</label>
+        <input type="file" id="itemPicture" name="itemPicture" accept="image/png, image/jpeg">
+        <p class="form-label">商品名</p>
+        <input type="text" name="itemName" required>
+        <p class="form-label">商品数量</p>
+        <input type="number" name="itemQuantity" required>
+        <p class="form-label">商品情報</p>
+        <p class="form-label">販売価格</p>
+        <input type="text" name="itemPrice" required>
+        <p>本製品に含まれるアレルギー物質</p>
+          <input type="checkbox" id="shrimp" value="えび" name="allergen">
+          <label for="shrimp">えび</label>
+          <input type="checkbox" id="crab" value="かに" name="allergen">
+          <label for="crab">かに</label>
+          <input type="checkbox" id="walnut" value="くるみ" name="allergen">
+          <label for="walnut">くるみ</label>
+          <input type="checkbox" id="wheat" value="小麦" name="allergen">
+          <label for="wheat">小麦</label>
+          <input type="checkbox" id="soba" value="そば" name="allergen">
+          <label for="soba">そば</label>
+          <input type="checkbox" id="egg" value="卵" name="allergen">
+          <label for="egg">卵</label>
+          <input type="checkbox" id="milk" value="乳" name="allergen">
+          <label for="milk">乳</label>
+          <input type="checkbox" id="peanut" value="落花生" name="allergen">
+          <label for="peanut">落花生</label>
+        <p>栄養成分</p>
+        <p>熱量(kcal)</p>
+        <input type="text" name="itemEnergy">
+        <p>たんぱく質(g)</p>
+        <input type="text" name="itemProtein">
+        <p>脂質(g)</p>
+        <input type="text" name="itemLipids">
+        <p>炭水化物(g)</p>
+        <input type="text" name="itemCarbohydrate">
+        <p>食塩相当量(g)</p>
+        <input type="text" name="itemSalt">
+        
+        <label class="form-label" for="selectBox">商品のジャンルを選んでください：</label>
+        <select name="selectedValue" id="selectBox">
+          <option value="ソフトドリンク">ソフトドリンク</option>
+          <option value="酒類">酒類</option>
+          <option value="野菜">野菜</option>
+          <option value="乳製品">乳製品</option>
+          <option value="畜産加工品">畜産加工品</option>
+          <option value="乾物、麺類">乾物、麺類</option>
+          <option value="調味料、甘味料">調味料、甘味料</option>
+          <option value="即席食品">即席食品</option>
+          <option value="缶詰、瓶詰">缶詰、瓶詰</option>
+          <option value="パン、もち">パン、もち</option>
+          <option value="お菓子">お菓子</option>
+          <option value="ベビーフード">ベビーフード</option>
+          <option value="冷凍食品">冷凍食品</option>
+          <option value="アイスクリーム、氷">アイスクリーム、氷</option>
+          <option value="その他">その他</option>
+        </select>
+        <button type="submit">追加</button>
+    </form>
+    <a href="/stores">店舗一覧に戻る</a>
+    <a href="/">トップに戻る</a>
+</body>
+</html>

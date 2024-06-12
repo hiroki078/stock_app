@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <title>LIST APP</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/send_url.js"></script>
+</head>
+<body>
+    <%- include('header')%>
+    <h1>在庫一覧</h1>
+    <form action="/stores/<%= storeId%>/items/genre" method="get">
+    <label class="form-label" for="selectBox">商品のジャンル：</label>
+            <select name="selectItemNarrow" id="selectBox">
+            <% const genres = ['ソフトドリンク', '酒類', '野菜', '乳製品', '畜産加工品', '乾物、麺類', '調味料、甘味料', '即席食品', '缶詰、瓶詰', 'パン、もち', 'お菓子', 'ベビーフード', '冷凍食品', 'アイスクリーム、氷', 'その他']; %>
+            <% genres.forEach(genre => { %>
+            <option value="<%= genre %>" ><%= genre %></option>
+            <% }) %>
+            </select>
+            <input type="submit" value="送信">
+    </form>
+    <div class="product-grid">
+        <% items.forEach((item) => {%>
+        <a href="/stores/ <%= item.id %>/items/itemInfo" class="product-card-link">
+            <div class="product-card">
+                <img src="<%= item.picture%>" alt="<%= item.name%>">
+                <div class="product-info">
+                    <h3><%= item.name%></h3>
+                    <p><%= item.genre%></p>
+                    <p><%= item.price%>（円）</p>
+                    <p>在庫数：<%= item.quantity%></p>
+                    <p>最終更新：<%= item.last_updated%></p>
+                    <% if (locals.isLoggedIn) {%>
+                        <form action="/stores/ <%= item.si_id %>/items/edit" method="get">
+                            <input type="submit" value="在庫数及び販売価格の更新">
+                        </form>
+                        <form action="/stores/<%= item.si_id %>/items/delete" method="post">
+                            <input type="submit" value="商品の削除">
+                        </form>
+                    <% }%>
+                </div>
+            </div>
+        </a>
+        <% })%>
+        <!-- 他の商品カードも同様に追加 -->
+    </div>
+ 
+    <a href="/stores/<%= storeId %>/items/new">在庫を追加する</a>
+    <a href="/stores">店舗選択に戻る</a>
+    <a href="/">トップに戻る</a>
+</body>
+</html>
+
